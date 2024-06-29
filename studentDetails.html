@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background: linear-gradient(rgb(241, 55, 55), rgb(0, 119, 255));
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo1,
+        .logo2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .logo1 {
+            background-color: black;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+
+        .logo2 {
+            background-color: white;
+            color: black;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .logo1:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .logo2:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .main-buttons a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .main-buttons a:hover {
+            color: yellow;
+        }
+
+        .login-buttons a {
+            background-color: rgb(0, 119, 255);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border-bottom: 2px solid black;
+            border-right: 2px solid black;
+            text-decoration: none;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .login-buttons a:hover {
+            background-color: rgb(2, 101, 214);
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 60px);
+            background: linear-gradient(rgb(241, 55, 55), rgb(0, 119, 255));
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+        }
+
+        .main-div {
+            background-color: white;
+            color: black;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .feeManagement {
+            margin-bottom: 20px;
+            background-color: rgb(0, 119, 255);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            border-bottom: 2px solid black;
+            border-right: 2px solid black;
+            transition: background-color 0.3s;
+        }
+
+        .feeManagement:hover {
+            background-color: rgb(2, 101, 214);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgb(0, 119, 255);
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        select,
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: rgb(0, 119, 255);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(2, 101, 214);
+        }
+
+        .message {
+            color: green;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .fee-history {
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .fee-history ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .fee-history li {
+            background-color: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+                height: auto;
+            }
+
+            .logo1,
+            .logo2 {
+                font-size: 18px;
+                padding: 5px 10px;
+            }
+
+            .main-buttons {
+                flex-direction: column;
+                margin-top: 10px;
+                width: 100%;
+            }
+
+            .main-buttons a {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+
+            .login-buttons {
+                margin-top: 10px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .login-buttons a {
+                padding: 8px 16px;
+                font-size: 18px;
+            }
+
+            main {
+                height: auto;
+                padding: 20px;
+                justify-content: flex-start;
+            }
+
+            .main-div {
+                width: 100%;
+            }
+
+            th,
+            td {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <span class="logo1">Student</span>
+            <span class="logo2">Manager</span>
+        </div>
+
+        <div class="main-buttons">
+            <a href="SsM.html" class="main-home">Home</a>
+        </div>
+
+        <div class="login-buttons">
+            <a class="sign1" href="stRegister.html">Add Student</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="main-div">
+            <h1 id="student-details">Details for</h1>
+            <div>
+                <table id="std-detaile-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Class</th>
+                            <th>Entry Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentInfo">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="main-div">
+            <h1>Student Fee Management</h1>
+            <h2 id="studentName"></h2>
+            <form id="feeForm">
+                <select id="monthSelect" required>
+                    <option value="" disabled selected>Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <input type="number" id="feeAmount" placeholder="Fee Amount" required>
+                <button type="submit">Record Fee</button>
+            </form>
+            <p id="message" class="message" style="display: none;"></p>
+            <div class="fee-history" id="feeHistory">
+                <h2>Fee History</h2>
+                <ul id="feeHistoryList"></ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const studentId = urlParams.get('id');
+            const students = JSON.parse(localStorage.getItem('students')) || [];
+            const student = students.find(stu => stu.id == studentId);
+
+            if (student) {
+                document.getElementById('student-details').textContent = `Details for ${student.name}`;
+                document.getElementById('studentName').textContent = `${student.name}`;
+                const studentInfo = `
+                    <tr>
+                        <td>${student.name}</td>
+                        <td>${student.age}</td>
+                        <td>${student.class}</td>
+                        <td>${student.feesPaid}</td>
+                    </tr>
+                `;
+                document.getElementById('studentInfo').innerHTML = studentInfo;
+
+                const feeForm = document.getElementById('feeForm');
+                const feeHistoryList = document.getElementById('feeHistoryList');
+                const message = document.getElementById('message');
+
+                feeForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const month = document.getElementById('monthSelect').value;
+                    const amount = document.getElementById('feeAmount').value;
+
+                    if (amount > 0) {
+                        const feeRecord = { month, amount };
+                        student.feeHistory = student.feeHistory || [];
+                        student.feeHistory.push(feeRecord);
+                        localStorage.setItem('students', JSON.stringify(students));
+
+                        const feeItem = document.createElement('li');
+                        feeItem.textContent = `${month}: ${amount}`;
+                        feeHistoryList.appendChild(feeItem);
+
+                        message.textContent = 'Fee recorded successfully';
+                        message.style.display = 'block';
+
+                        feeForm.reset();
+                    } else {
+                        message.textContent = 'Invalid fee amount';
+                        message.style.display = 'block';
+                    }
+                });
+
+                student.feeHistory = student.feeHistory || [];
+                student.feeHistory.forEach(fee => {
+                    const feeItem = document.createElement('li');
+                    feeItem.textContent = `${fee.month}: ${fee.amount}`;
+                    feeHistoryList.appendChild(feeItem);
+                });
+            } else {
+                document.getElementById('student-details').textContent = `Student not found`;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

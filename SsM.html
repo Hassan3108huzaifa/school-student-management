@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            background: linear-gradient(rgb(241, 55, 55), rgb(0, 119, 255));
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo1,
+        .logo2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .logo1 {
+            background-color: black;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+
+        .logo2 {
+            background-color: white;
+            color: black;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .logo1:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .logo2:hover {
+            background-color: black;
+            color: white;
+        }
+
+
+        .main-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-buttons a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .for-small-device {
+            display: none;
+        }
+
+        .login-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .sign1 {
+            background-color: rgb(0, 119, 255);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            border-bottom: 2px solid black;
+            border-right: 2px solid black;
+        }
+
+        .sign1:active,
+        .sign1:focus {
+            border: none;
+        }
+        
+        .main-div{
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+
+            .logo1,
+            .logo2 {
+                font-size: 15px;
+                padding: 2px 5px;
+            }
+
+            .main-buttons {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .login-buttons {
+                margin-top: 10px;
+            }
+
+            .sign1 {
+                padding: 8px 16px;
+            }
+
+            .for-small-device {
+                display: inline-block;
+                background-color: black;
+            }
+        }
+
+        main {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(rgb(241, 55, 55), rgb(0, 119, 255));
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        select {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        .Student-button {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgb(0, 119, 255);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        .Student-button:hover {
+            background-color: rgb(2, 101, 214);
+            color: white;
+            cursor: pointer;
+        }
+
+        .main-home,
+        .main-fees {
+            transition: all 0.5s ease;
+        }
+
+        .main-home:hover,
+        .main-fees:hover {
+            color: rgb(77, 77, 245);
+            text-decoration: underline;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        #students {
+            display: none;
+            width: 50%;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            list-style-type: none;
+            border-radius: 5px;
+        }
+
+        #students li {
+            padding: 10px;
+            margin-bottom: 2px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            <span class="logo1">Student</span>
+            <span class="logo2">Manager</span>
+        </div>
+
+        <div class="main-buttons">
+            <hr class="for-small-device">
+            <a href="SsM.html" class="main-home">Home</a>
+            <hr class="for-small-device">
+        </div>
+
+        <div class="login-buttons">
+            <a class="sign1" href="stRegister.html">Add Student</a>
+        </div>
+
+    </nav>
+
+    <main>
+        <div style="
+           display: flex;align-items: center;
+           flex-direction: column;
+           width: 100%;
+            height: 100vh;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;" class="main-div">
+
+            <h1>Choose Class</h1>
+
+            <select id="classSelect">
+                <option value="" disabled selected>Select Class</option>
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+            </select>
+            <button class="Student-button" id="viewStudentsBtn">View Students</button>
+
+            <ul id="students"></ul>
+
+            <p id="noStudentsMsg" class="no-students" style="display: none;">No Students in this class</p>
+
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const studentList = document.getElementById('students');
+            const viewStudentsBtn = document.getElementById('viewStudentsBtn');
+            const classSelect = document.getElementById('classSelect');
+            const noStudentsMsg = document.getElementById('noStudentsMsg');
+            let students = JSON.parse(localStorage.getItem('students')) || [];
+
+            function displayStudents(classNum) {
+                studentList.innerHTML = '';
+                const filteredStudents = students.filter(student => student.class == classNum); // Note: classNum is a string, so use ==
+                if (filteredStudents.length === 0) {
+                    noStudentsMsg.style.display = 'block';
+                    studentList.style.display = 'none';
+                } else {
+                    noStudentsMsg.style.display = 'none';
+                    studentList.style.display = 'block';
+                    filteredStudents.forEach(student => {
+                        const li = document.createElement('li');
+                        li.className = 'student-item';
+                        li.innerHTML = `
+                            <span>${student.name}</span>
+                            <button class="delete-btn" data-id="${student.id}">Delete</button>
+                        `;
+                        li.addEventListener('click', () => {
+                            window.location.href = `studentDetails.html?id=${student.id}`;
+                        });
+                        studentList.appendChild(li);
+                    });
+                }
+            }
+
+            viewStudentsBtn.addEventListener('click', () => {
+                const classNum = classSelect.value;
+                if (classNum) {
+                    displayStudents(classNum);
+                }
+            });
+
+            studentList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('delete-btn')) {
+                    const id = parseInt(e.target.getAttribute('data-id'), 10);
+                    students = students.filter(student => student.id !== id);
+                    localStorage.setItem('students', JSON.stringify(students));
+                    const classNum = classSelect.value;
+                    displayStudents(classNum);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
